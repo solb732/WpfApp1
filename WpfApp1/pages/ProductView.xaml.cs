@@ -65,7 +65,7 @@ namespace WpfApp1.pages
             {
                 iduser = activeuser.activeuserid,
                 total = 1,
-                idproduct = prod.idproduct,
+                idproduct = prod.idproduct, 
 
             };
             try
