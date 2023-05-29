@@ -1,0 +1,47 @@
+﻿<Application x:Class="WpfApp1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp1"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="mainBtn" TargetType="Button">
+            <Setter Property="Width" Value="200"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="FontFamily" Value="Aegean Sea"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="OrangeRed"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+        </Style>
+        <Style x:Key="minBtn" TargetType="Button">
+            <Setter Property="Width" Value="140"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="FontFamily" Value="Aegean Sea"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="OrangeRed"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+        </Style>
+
+        <Style x:Key="mainTxt" TargetType="TextBlock">
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="FontFamily" Value="Aegean Sea"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style x:Key="mainTextBox" TargetType="TextBox">
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="FontFamily" Value="Aegean Sea"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style x:Key="fontTxt" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Aegean Sea"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style x:Key="lblFont" TargetType="Label">
+            <Setter Property="FontFamily" Value="Aegean Sea"></Setter>
+            <Setter Property="FontSize" Value="10"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>

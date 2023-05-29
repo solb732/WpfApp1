@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c157e323f7e04830a4ac80e8b8bd6021" Name="Diagram1">
+        <EntityTypeShape EntityType="ogonekfixModel.cheque" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.client" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.crate" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.order" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.product" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.productype" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.storage" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.user" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ogonekfixModel.useroles" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="ogonekfixModel.FK_cheque_user" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_order_cheque" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_crate_product" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_crate_user" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_order_product1" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_product_productype" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_storage_product" ManuallyRouted="false" />
+        <AssociationConnector Association="ogonekfixModel.FK_user_useroles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

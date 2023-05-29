@@ -1,0 +1,25 @@
+﻿<Page x:Class="WpfApp1.pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="5">
+                <TextBlock Style="{StaticResource mainTxt}" Text="Логин:" TextAlignment="Center" Width="61" ></TextBlock>
+                <TextBox Style="{StaticResource mainTextBox}" Name="txtlogin"></TextBox>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Style="{StaticResource mainTxt}" Text="Пароль:" TextAlignment="Center" Width="61"></TextBlock>
+                <PasswordBox  Name="txtpassword" Width="149" ></PasswordBox>
+            </StackPanel>
+            <Button Style="{StaticResource mainBtn}" Content="Войти" Name="btnSign" Click="btnSign_Click" Width="210"></Button>
+            <Button Style="{StaticResource mainBtn}" Content="Создать учетную запись" Click="Button_Click" Width="211"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

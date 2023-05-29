@@ -1,0 +1,58 @@
+﻿<Page x:Class="WpfApp1.pages.Orders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.pages" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Orders">
+
+    <Page.Resources>
+        <sys:String x:Key="NullImage">
+            pack://application:,,,/Resource/picture.png
+        </sys:String>
+    </Page.Resources>
+    <Grid>
+        <StackPanel>
+            <ScrollViewer Height="450" VerticalAlignment="Top" Width="780" VerticalScrollBarVisibility="Hidden">
+                <ListBox Width="700" Name="ListData" Height="420">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <ListBoxItem Background="#43DCFE" BorderBrush="Black" IsSelected="False" IsEnabled="False">
+                                <DockPanel Width="670" VerticalAlignment="Center">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Margin="10">
+                                        <TextBlock Text="Чек номер:"></TextBlock>
+                                        <TextBlock Text="{Binding idcheq}"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Center" Margin="10">
+                                        <StackPanel>
+                                            <TextBlock Text="Покупатель: "></TextBlock>
+                                            <TextBlock Text="{Binding FIOC}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Right" Margin="10">
+                                        <TextBlock Text="Продукты: "></TextBlock>
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="{Binding products}"></TextBlock>
+                                            <TextBlock Text="Цена: "></TextBlock>
+                                            <TextBlock Text="{Binding price}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Цена: "></TextBlock>
+                                            <TextBlock Text="{Binding cost}"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding date1, StringFormat=Дата заказа: dd.MM.yyyy }"></TextBlock>
+                                    </StackPanel>
+                                </DockPanel>
+                            </ListBoxItem>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </StackPanel>
+
+    </Grid>
+</Page>

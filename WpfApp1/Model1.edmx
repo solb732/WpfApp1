@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ogonekfixModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cheque">
+          <Key>
+            <PropertyRef Name="idcheq" />
+          </Key>
+          <Property Name="idcheq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iduser" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idclient" />
+          </Key>
+          <Property Name="idclient" Type="int" Nullable="false" />
+          <Property Name="surname" Type="nvarchar(max)" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="patronymic" Type="nvarchar(max)" />
+          <Property Name="number" Type="nvarchar(max)" />
+          <Property Name="birthdate" Type="date" />
+        </EntityType>
+        <EntityType Name="crate">
+          <Key>
+            <PropertyRef Name="idcrate" />
+          </Key>
+          <Property Name="idcrate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idproduct" Type="int" Nullable="false" />
+          <Property Name="iduser" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="idorder" />
+          </Key>
+          <Property Name="idorder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcheq" Type="int" Nullable="false" />
+          <Property Name="idproduct" Type="int" />
+          <Property Name="total" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="idproduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="producttypeid" Type="int" Nullable="false" />
+          <Property Name="work_time" Type="nvarchar" MaxLength="10" />
+          <Property Name="effectsam" Type="nvarchar" MaxLength="5" />
+          <Property Name="caliber" Type="nvarchar" MaxLength="5" />
+          <Property Name="volleysam" Type="nvarchar" MaxLength="5" />
+          <Property Name="amount" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="productype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="idstorage" />
+          </Key>
+          <Property Name="idstorage" Type="int" Nullable="false" />
+          <Property Name="idproduct" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="amount" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="userroleid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="useroles">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="rolename" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_cheque_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="cheque" Type="Self.cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="cheque">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_crate_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="crate" Type="Self.crate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="idproduct" />
+            </Principal>
+            <Dependent Role="crate">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_crate_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="crate" Type="Self.crate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="crate">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_cheque">
+          <End Role="cheque" Type="Self.cheque" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cheque">
+              <PropertyRef Name="idcheq" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="idcheq" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_product1">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="idproduct" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_productype">
+          <End Role="productype" Type="Self.productype" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="producttypeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_storage_product">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="idproduct" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_useroles">
+          <End Role="useroles" Type="Self.useroles" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="useroles">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="userroleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ogonekfixModelContainer">
+          <EntitySet Name="cheque" EntityType="Self.cheque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="crate" EntityType="Self.crate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productype" EntityType="Self.productype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storage" EntityType="Self.storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="useroles" EntityType="Self.useroles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cheque_user" Association="Self.FK_cheque_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="cheque" EntitySet="cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_crate_product" Association="Self.FK_crate_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="crate" EntitySet="crate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_crate_user" Association="Self.FK_crate_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="crate" EntitySet="crate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_cheque" Association="Self.FK_order_cheque">
+            <End Role="cheque" EntitySet="cheque" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_product1" Association="Self.FK_order_product1">
+            <End Role="product" EntitySet="product" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_productype" Association="Self.FK_product_productype">
+            <End Role="productype" EntitySet="productype" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_storage_product" Association="Self.FK_storage_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_useroles" Association="Self.FK_user_useroles">
+            <End Role="useroles" EntitySet="useroles" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ogonekfixModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cheque">
+          <Key>
+            <PropertyRef Name="idcheq" />
+          </Key>
+          <Property Name="idcheq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iduser" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="user" Relationship="Self.FK_cheque_user" FromRole="cheque" ToRole="user" />
+          <NavigationProperty Name="order" Relationship="Self.FK_order_cheque" FromRole="cheque" ToRole="order" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idclient" />
+          </Key>
+          <Property Name="idclient" Type="Int32" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="crate">
+          <Key>
+            <PropertyRef Name="idcrate" />
+          </Key>
+          <Property Name="idcrate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idproduct" Type="Int32" Nullable="false" />
+          <Property Name="iduser" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_crate_product" FromRole="crate" ToRole="product" />
+          <NavigationProperty Name="user" Relationship="Self.FK_crate_user" FromRole="crate" ToRole="user" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="idorder" />
+          </Key>
+          <Property Name="idorder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcheq" Type="Int32" Nullable="false" />
+          <Property Name="idproduct" Type="Int32" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="cheque" Relationship="Self.FK_order_cheque" FromRole="order" ToRole="cheque" />
+          <NavigationProperty Name="product" Relationship="Self.FK_order_product1" FromRole="order" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="idproduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="producttypeid" Type="Int32" Nullable="false" />
+          <Property Name="work_time" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="effectsam" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="caliber" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="volleysam" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="crate" Relationship="Self.FK_crate_product" FromRole="product" ToRole="crate" />
+          <NavigationProperty Name="order" Relationship="Self.FK_order_product1" FromRole="product" ToRole="order" />
+          <NavigationProperty Name="productype" Relationship="Self.FK_product_productype" FromRole="product" ToRole="productype" />
+          <NavigationProperty Name="storage" Relationship="Self.FK_storage_product" FromRole="product" ToRole="storage" />
+        </EntityType>
+        <EntityType Name="productype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_productype" FromRole="productype" ToRole="product" />
+        </EntityType>
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="idstorage" />
+          </Key>
+          <Property Name="idstorage" Type="Int32" Nullable="false" />
+          <Property Name="idproduct" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="amount" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="Self.FK_storage_product" FromRole="storage" ToRole="product" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userroleid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cheque" Relationship="Self.FK_cheque_user" FromRole="user" ToRole="cheque" />
+          <NavigationProperty Name="crate" Relationship="Self.FK_crate_user" FromRole="user" ToRole="crate" />
+          <NavigationProperty Name="useroles" Relationship="Self.FK_user_useroles" FromRole="user" ToRole="useroles" />
+        </EntityType>
+        <EntityType Name="useroles">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" />
+          <Property Name="rolename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="user" Relationship="Self.FK_user_useroles" FromRole="useroles" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_cheque_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="cheque" Type="Self.cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="cheque">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_cheque">
+          <End Role="cheque" Type="Self.cheque" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cheque">
+              <PropertyRef Name="idcheq" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="idcheq" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_crate_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="crate" Type="Self.crate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="idproduct" />
+            </Principal>
+            <Dependent Role="crate">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_crate_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="crate" Type="Self.crate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="crate">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_product1">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="idproduct" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_productype">
+          <End Role="productype" Type="Self.productype" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="producttypeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_storage_product">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="idproduct" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_useroles">
+          <End Role="useroles" Type="Self.useroles" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="useroles">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="userroleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ogonekfixEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cheque" EntityType="Self.cheque" />
+          <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="crate" EntityType="Self.crate" />
+          <EntitySet Name="order" EntityType="Self.order" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="productype" EntityType="Self.productype" />
+          <EntitySet Name="storage" EntityType="Self.storage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="useroles" EntityType="Self.useroles" />
+          <AssociationSet Name="FK_cheque_user" Association="Self.FK_cheque_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="cheque" EntitySet="cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_cheque" Association="Self.FK_order_cheque">
+            <End Role="cheque" EntitySet="cheque" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_crate_product" Association="Self.FK_crate_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="crate" EntitySet="crate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_crate_user" Association="Self.FK_crate_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="crate" EntitySet="crate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_product1" Association="Self.FK_order_product1">
+            <End Role="product" EntitySet="product" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_productype" Association="Self.FK_product_productype">
+            <End Role="productype" EntitySet="productype" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_storage_product" Association="Self.FK_storage_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_useroles" Association="Self.FK_user_useroles">
+            <End Role="useroles" EntitySet="useroles" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ogonekfixModelContainer" CdmEntityContainer="ogonekfixEntities6">
+          <EntitySetMapping Name="cheque">
+            <EntityTypeMapping TypeName="ogonekfixModel.cheque">
+              <MappingFragment StoreEntitySet="cheque">
+                <ScalarProperty Name="idcheq" ColumnName="idcheq" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client">
+            <EntityTypeMapping TypeName="ogonekfixModel.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="idclient" ColumnName="idclient" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="crate">
+            <EntityTypeMapping TypeName="ogonekfixModel.crate">
+              <MappingFragment StoreEntitySet="crate">
+                <ScalarProperty Name="idcrate" ColumnName="idcrate" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="ogonekfixModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="idorder" ColumnName="idorder" />
+                <ScalarProperty Name="idcheq" ColumnName="idcheq" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="ogonekfixModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="producttypeid" ColumnName="producttypeid" />
+                <ScalarProperty Name="work_time" ColumnName="work_time" />
+                <ScalarProperty Name="effectsam" ColumnName="effectsam" />
+                <ScalarProperty Name="caliber" ColumnName="caliber" />
+                <ScalarProperty Name="volleysam" ColumnName="volleysam" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productype">
+            <EntityTypeMapping TypeName="ogonekfixModel.productype">
+              <MappingFragment StoreEntitySet="productype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storage">
+            <EntityTypeMapping TypeName="ogonekfixModel.storage">
+              <MappingFragment StoreEntitySet="storage">
+                <ScalarProperty Name="idstorage" ColumnName="idstorage" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ogonekfixModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="ogonekfixModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="useroles">
+            <EntityTypeMapping TypeName="ogonekfixModel.useroles">
+              <MappingFragment StoreEntitySet="useroles">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
