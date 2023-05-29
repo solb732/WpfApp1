@@ -59,10 +59,13 @@ namespace WpfApp1.pages
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {
+            
             product product = (sender as Button).DataContext as product;
+            product contextproduct = ConnectOdb.con.product.Where(x => x.idproduct == product.idproduct).First();
             crate crt = ConnectOdb.con.crate.Where(x => x.iduser == activeuser.activeuserid
                 && x.idproduct == product.idproduct).First();
             ConnectOdb.con.crate.Remove(crt);
+            contextproduct.amount = (Convert.ToInt32(contextproduct.amount) + crt.total).ToString();
             ConnectOdb.con.SaveChanges();
             getData();
         }

@@ -28,7 +28,7 @@ namespace WpfApp1.pages
             ListProduct.ItemsSource = ConnectOdb.con.product.ToList();
 
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Interval = TimeSpan.FromSeconds(3);
             timer.Tick += UpdateData;
             timer.Start();
 
@@ -77,7 +77,7 @@ namespace WpfApp1.pages
             {
                 ConnectOdb.con.crate.Add(crt);
             }
-            prod.amount -= prod.amount - crt.total;
+            prod.amount = (Convert.ToInt32(prod.amount) - crt.total).ToString();
             ConnectOdb.con.SaveChanges();
         }
 
