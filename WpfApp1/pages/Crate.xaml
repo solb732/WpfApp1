@@ -19,7 +19,7 @@
                     <ListBox x:Name="ListProduct" Background="Transparent" Width="660" BorderBrush="Transparent">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <ListBoxItem BorderBrush="Black" Background="#43DCFE" Width="640" HorizontalAlignment="Center">
+                                <ListBoxItem BorderBrush="Black" Background="Transparent" Width="640" HorizontalAlignment="Center">
                                     <DockPanel Width="680">
                                         <Image Source="{Binding ImgPath, FallbackValue={StaticResource NullImage}}" Width="150" Height="150" />
                                         <DockPanel>
@@ -43,7 +43,7 @@
                     </ListBox>
                 </StackPanel>
             </ScrollViewer>
-            <Button Content="Оплатить" Style="{StaticResource minBtn}" x:Name="btnBuy" VerticalAlignment="Bottom" Click="btnBuy_Click"></Button>
+            <Button Content="Оформить заказ" Style="{StaticResource minBtn}" x:Name="btnBuy" VerticalAlignment="Bottom" Click="btnBuy_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

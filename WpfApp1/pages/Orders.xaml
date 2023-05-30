@@ -19,7 +19,7 @@
                 <ListBox Width="700" Name="ListData" Height="420">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <ListBoxItem Background="#43DCFE" BorderBrush="Black" IsSelected="False" IsEnabled="False">
+                            <ListBoxItem Background="Transparent" BorderBrush="Black" IsSelected="False" IsEnabled="False">
                                 <DockPanel Width="670" VerticalAlignment="Center">
                                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Margin="10">
                                         <TextBlock Text="Чек номер:"></TextBlock>
