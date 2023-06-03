@@ -20,7 +20,7 @@ namespace WpfApp1.pages
     /// </summary>
     public partial class RegisterPage : Page
     {
-        public RegisterPage(user user)
+        public RegisterPage()
         {
             InitializeComponent();
             ConnectOdb.con = new ogonekfixEntities6();

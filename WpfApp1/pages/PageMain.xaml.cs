@@ -36,7 +36,7 @@ namespace WpfApp1.pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            FrameObj.frameMain.Navigate(new ProductView((sender as Button).DataContext as product));
+            FrameObj.frameMain.Navigate(new ProductView());
             
         }
 

@@ -20,7 +20,7 @@ namespace WpfApp1.pages
     /// </summary>
     public partial class ProductAdd : Page
     {
-        public ProductAdd(product product)
+        public ProductAdd()
         {
             InitializeComponent();
             ConnectOdb.con = new ogonekfixEntities6();

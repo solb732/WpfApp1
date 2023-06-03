@@ -59,7 +59,7 @@ namespace WpfApp1.pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FrameObj.frameMain.Navigate(new RegisterPage((sender as Button).DataContext as user));
+            FrameObj.frameMain.Navigate(new RegisterPage());
         }
     }
 }

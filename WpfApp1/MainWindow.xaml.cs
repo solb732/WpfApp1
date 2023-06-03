@@ -26,19 +26,23 @@ namespace WpfApp1
             InitializeComponent();
             FrameObj.frameMain = frmMain;
             frmMain.Navigate(new AuthPage());
+            if(role.roleid == 1 )
+            {
+                MenuUserAdd.Visibility = Visibility.Visible;
+                MenuAddProduct.Visibility = Visibility.Visible;
+            }
+            else if (role.roleid == 2 )
+            {
+                MenuUserAdd.Visibility = Visibility.Collapsed;
+                MenuAddProduct.Visibility = Visibility.Collapsed;
+            }
             
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                FrameObj.frameMain.GoBack();
-            }
-            catch
-            {
-
-            }
+           
         }
 
 
@@ -46,6 +50,42 @@ namespace WpfApp1
         private void frmMain_Navigated(object sender, NavigationEventArgs e)
         {
 
+        }
+
+        private void MenuProductView_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.frameMain.Navigate(new ProductView());
+        }
+
+        private void MenuCrateview_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.frameMain.Navigate(new Order());
+        }
+
+        private void MenuOrderview_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.frameMain.Navigate(new Orders());
+        }
+
+        private void MenuAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.frameMain.Navigate(new ProductAdd());
+        }
+
+        private void MenuUserView_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.frameMain.Navigate(new Users());
+        }
+
+        private void MenuUserAdd_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.frameMain.Navigate(new RegisterPage());
+        }
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            activeuser.activeuserid = 0;
+            FrameObj.frameMain.Navigate(new AuthPage());
         }
     }
 }

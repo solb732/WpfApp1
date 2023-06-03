@@ -28,6 +28,7 @@ namespace WpfApp1.pages
 
         private void btnSign_Click(object sender, RoutedEventArgs e)
         {
+            var MainWindow = Window.GetWindow(this) as MainWindow;
             var ListUsers = ConnectOdb.con.user.ToList();
             var currentuser = ConnectOdb.con.user.FirstOrDefault(u => u.login == txtlogin.Text && u.password == txtpassword.Password);
             
@@ -38,12 +39,18 @@ namespace WpfApp1.pages
                     if (currentuser.userroleid == 1)
                     {
                         role.roleid = 1;
-                        FrameObj.frameMain.Navigate(new PageMain());
+                        FrameObj.frameMain.Navigate(new ProductView());
+                        MainWindow.MainMenu.Visibility = Visibility.Visible;
+                    MainWindow.Quit.Visibility = Visibility.Visible;
                     }
                     else if (currentuser.userroleid == 2)
                     {
                         role.roleid = 2;
-                        FrameObj.frameMain.Navigate(new PageMain());
+                        FrameObj.frameMain.Navigate(new ProductView());
+                        MainWindow.MainMenu.Visibility = Visibility.Visible;
+                        MainWindow.MenuAddProduct.Visibility = Visibility.Collapsed;
+                        MainWindow.MenuUser.Visibility = Visibility.Collapsed;
+                        MainWindow.Quit.Visibility = Visibility.Visible;
                     }
                     activeuser.activeuserid = currentuser.userid;
                 }
@@ -57,7 +64,7 @@ namespace WpfApp1.pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FrameObj.frameMain.Navigate(new RegisterPage((sender as Button).DataContext as user));
+            FrameObj.frameMain.Navigate(new RegisterPage());
             
 
         }

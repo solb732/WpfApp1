@@ -8,13 +8,29 @@
         Title="MainWindow" Height="500" Width="800" MinHeight="500" MinWidth="800" MaxHeight="600" MaxWidth="900">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="23*"></RowDefinition>
+            <RowDefinition Height="22*"></RowDefinition>
             <RowDefinition Height="200*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Background="AliceBlue" Orientation="Horizontal">
-            <Image Source=".//resource/blame.png" Opacity="1" Width="55" HorizontalAlignment="Left" Margin="10 0 0 0"></Image>
-            <Button x:Name="btnBack" Click="btnBack_Click" Width="150" Height="30" Content="Назад"/>
+        <StackPanel Grid.Row="0" Background="AntiqueWhite" Orientation="Horizontal">
+
+            <Menu Height="45" HorizontalAlignment="Left" FontFamily="Aegean Sea" FontSize="16" Visibility="Hidden"  Name="MainMenu" Background="#FFB266">
+                <MenuItem Header="Продукция" Height="45" Name="MenuProduct">
+                    <MenuItem Header="Перейти" Name="MenuProductView" Click="MenuProductView_Click"></MenuItem>
+                    <MenuItem Header="Добавить" Name="MenuAddProduct" Click="MenuAddProduct_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Пользователи" Height="45" Name="MenuUser">
+                    <MenuItem Header="Перейти" Name="MenuUserView" Click="MenuUserView_Click"></MenuItem>
+                    <MenuItem Header="Добавить" Name="MenuUserAdd" Click="MenuUserAdd_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Корзина" Height="45" Name="MenuCrate">
+                    <MenuItem Header="Перейти" Name ="MenuCrateview" Click="MenuCrateview_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Заказы" Height="45" Name="MenuOrder">
+                    <MenuItem Header="Перейти" Name="MenuOrderview" Click="MenuOrderview_Click"></MenuItem>
+                </MenuItem>
+            </Menu>
         </StackPanel>
+        <Button HorizontalAlignment="Right" Width="81" Content="Выйти" Background="#FFB266" Visibility="Hidden" Click="Quit_Click"  Height="45" Name="Quit" />
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
             <Image Source=".//resource/blame.png" Opacity=".3" Width="490"></Image>
         </StackPanel>

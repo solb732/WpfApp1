@@ -21,7 +21,7 @@ namespace WpfApp1.pages
     /// </summary>
     public partial class ProductView : Page
     {
-        public ProductView(product product)
+        public ProductView()
         {
             InitializeComponent();
 
@@ -88,7 +88,7 @@ namespace WpfApp1.pages
 
         private void txtAdd_Click(object sender, RoutedEventArgs e)
         {
-            FrameObj.frameMain.Navigate(new ProductAdd((sender as Button).DataContext as product));
+            FrameObj.frameMain.Navigate(new ProductAdd());
         }
 
         private void type_SelectionChanged(object sender, SelectionChangedEventArgs e)
